@@ -75,11 +75,8 @@ if(UNIX)
 
     if(${X11_FOUND})
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
-    endif()
-
-    find_package(Git)
-    if(Git_FOUND)
-    message("Git found: ${GIT_EXECUTABLE}")
+    else()       
+        add_definitions(-DNOT_GIT)
     endif()
 
     include_directories(${X11_INCLUDE_DIR})
