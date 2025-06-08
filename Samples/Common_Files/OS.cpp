@@ -388,12 +388,10 @@ WindowFramework::WindowFramework( const char               * window_title,
                                     VulkanCookbookSampleBase & sample ):
     WindowParams(),
     Sample( sample ),
-    Created( false ) {
-     
+    Created( false ) {  
 
-    long visualMask = VisualScreenMask;
+    
     int numberOfVisuals;
-    XVisualInfo vInfoTemplate = {};
 
 
   
