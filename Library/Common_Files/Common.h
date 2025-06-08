@@ -68,13 +68,16 @@ namespace VulkanCookbook {
 
     HINSTANCE          HInstance;
     HWND               HWnd;
+#endif
 
-#else
+#ifndef NOT_GIT
 
     Display          * Dpy;
     Window             WIndow;
 
 #endif
+
+
   };
 
   // Extension availability check

@@ -222,6 +222,8 @@ namespace VulkanCookbook {
   
 #else
 
+#ifndef NOT_GIT
+
 void demo_run_xlib(VulkanCookbook::VulkanCookbookSampleBase& sample, WindowParameters wp, bool& test);
 
 Atom xlib_wm_delete_window;
@@ -376,6 +378,42 @@ void demo_run_xlib(VulkanCookbook::VulkanCookbookSampleBase& sample, WindowParam
     }
   }
 }
+
+#else
+
+WindowFramework::WindowFramework( const char               * window_title,
+                                    int                        x,
+                                    int                        y,
+                                    int                        width,
+                                    int                        height,
+                                    VulkanCookbookSampleBase & sample ):
+    WindowParams(),
+    Sample( sample ),
+    Created( false ) {
+     
+
+    long visualMask = VisualScreenMask;
+    int numberOfVisuals;
+    XVisualInfo vInfoTemplate = {};
+
+
+  
+    Created = true;
+    }
+
+    
+  
+
+  WindowFramework::~WindowFramework() {
+    
+  }
+
+void WindowFramework::Render() {
+    
+    
+}
+
+#endif
 
 #endif
 
