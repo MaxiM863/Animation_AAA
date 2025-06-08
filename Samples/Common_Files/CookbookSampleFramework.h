@@ -137,8 +137,8 @@ namespace VulkanCookbook {
     virtual void  MouseReset() final;
     virtual void  UpdateTime() final;
     virtual void  ServerIn( char* data ) final;
-    virtual void  KeyboardIn( uint key ) final;
-    virtual void  KeyboardOut( uint key ) final;
+    virtual void  KeyboardIn( uint32_t key ) final;
+    virtual void  KeyboardOut( uint32_t key ) final;
     virtual bool  IsReady() final;
 
   protected:

@@ -1,7 +1,7 @@
 #ifndef ENGINE
 #define ENGINE
 
-#ifdef VK_USE_PLATFORM_WIN32_KHR
+#ifdef _WIN32
 
 #include <windows.h>
 #include <gdiplus.h>
@@ -15,8 +15,10 @@
 
 #include "CookbookSampleFramework.h"
 #include "OrbitingCamera.h"
-#include <freetype/freetype.h>
 
+#ifndef _WIN32
+#include <freetype/freetype.h>
+#endif
 
 #ifdef VK_USE_PLATFORM_WIN32_KHR
 
@@ -92,7 +94,7 @@ class TextEngine
     
         std::vector<uint8_t> sdlTextEngineT(int width, int height, int fontSize, int fontColor, int backGColor, std::string s) {
 
-          #ifdef VK_USE_PLATFORM_WIN32_KHR
+          #ifdef _WIN32
 
           GdiplusStartupInput gdiplusStartupInput;
           ULONG_PTR gdiplusToken;
@@ -146,6 +148,8 @@ class TextEngine
           return dataR;
 
           #endif
+
+          #ifndef _WIN32
 
           FT_Library library;
           FT_Init_FreeType(&library);
@@ -203,7 +207,9 @@ class TextEngine
               x += face->glyph->advance.x >> 6;
           }
 
-          return myBitmap;     
+          return myBitmap; 
+          
+          #endif
     }
 
     #ifdef VK_USE_PLATFORM_WIN32_KHR

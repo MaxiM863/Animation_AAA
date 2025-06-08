@@ -151,7 +151,7 @@ namespace VulkanCookbook {
 
   void WindowFramework::Render() {
     if( Created &&
-        Sample.Initialize( WindowParams, WindowParams.HWnd ) ) {
+        Sample.Initialize( WindowParams ) ) {
 
       ShowWindow( WindowParams.HWnd, SW_SHOWNORMAL );
       UpdateWindow( WindowParams.HWnd );

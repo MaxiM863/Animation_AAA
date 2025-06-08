@@ -1,0 +1,1 @@
+add_definitions(-DVK_USE_PLATFORM_WIN32_KHR)
