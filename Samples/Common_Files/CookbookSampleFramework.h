@@ -127,7 +127,7 @@ namespace VulkanCookbook {
               VulkanCookbookSampleBase();
     virtual  ~VulkanCookbookSampleBase();
 
-    virtual bool  Initialize( WindowParameters window_parameters, HWND hWnd ) = 0;
+    virtual bool  Initialize( WindowParameters window_parameters ) = 0;
     virtual bool  Draw() = 0;
     virtual bool  Resize() = 0;
     virtual void  Deinitialize() = 0;
@@ -137,8 +137,8 @@ namespace VulkanCookbook {
     virtual void  MouseReset() final;
     virtual void  UpdateTime() final;
     virtual void  ServerIn( char* data ) final;
-    virtual void  KeyboardIn( WPARAM key ) final;
-    virtual void  KeyboardOut( WPARAM key ) final;
+    virtual void  KeyboardIn( uint key ) final;
+    virtual void  KeyboardOut( uint key ) final;
     virtual bool  IsReady() final;
 
   protected:

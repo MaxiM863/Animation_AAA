@@ -55,25 +55,37 @@ endif(WIN32)
 
 if(UNIX)
 
+
+
+    include(FetchContent)
+
+    FetchContent_Declare(
+        freetype
+        GIT_REPOSITORY	https://github.com/freetype/freetype.git
+        GIT_TAG 	320b72a
+    )
+
+    FetchContent_MakeAvailable(freetype)
+
     add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
     
     find_package(X11 REQUIRED)
 
     message(STATUS "X11_FOUND = ${X11_FOUND}")
-    message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}")
+    message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
 
     include_directories(${X11_INCLUDE_DIR})
 
     link_directories(${X11_LIBRARIES})
 
-    target_link_libraries(EngineMaxim ${X11_LIBRARIES} Cookbook)
+    target_link_libraries( EngineMaxim ${X11_LIBRARIES} Cookbook freetype )
 
     add_custom_command(TARGET ${PROJECT_NAME}  POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-                ${CMAKE_CURRENT_SOURCE_DIR}/Data
+                ${CMAKE_CURRENT_SOURCE_DIR}/../Data
                 ${CMAKE_CURRENT_BINARY_DIR}/Data)
 
 endif(UNIX)
 
-target_include_directories(EngineMaxim PRIVATE "../Samples/Common_Files" "../Library/Common_Files" "../Library/Source_Files" "../External" "../build/_deps/glm-src/")
+target_include_directories(EngineMaxim PRIVATE "../Samples/Common_Files" "../Library/Common_Files" "../Library/Source_Files" "../External" "../build/_deps/glm-src/" ${FREETYPE_INCLUDE_DIRS})

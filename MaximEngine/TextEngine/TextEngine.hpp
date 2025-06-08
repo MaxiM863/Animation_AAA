@@ -1,17 +1,24 @@
 #ifndef ENGINE
 #define ENGINE
 
+#ifdef VK_USE_PLATFORM_WIN32_KHR
+
 #include <windows.h>
 #include <gdiplus.h>
-#include <vector>
 #pragma comment(lib, "gdiplus.lib")
+
+#endif
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+
 #include "CookbookSampleFramework.h"
 #include "OrbitingCamera.h"
+#include <freetype/freetype.h>
 
 
+#ifdef VK_USE_PLATFORM_WIN32_KHR
 
 using namespace Gdiplus;
 //using namespace VulkanCookbook;
@@ -40,6 +47,7 @@ struct BMPInfoHeader {
     uint32_t colorsImportant{0};
 };
 
+#endif
 
 
 class TextEngine
@@ -82,7 +90,9 @@ class TextEngine
     
         TextEngine(){};   
     
-        std::vector<BYTE> sdlTextEngineT(int width, int height, int fontSize, int fontColor, int backGColor, std::string s) {
+        std::vector<uint8_t> sdlTextEngineT(int width, int height, int fontSize, int fontColor, int backGColor, std::string s) {
+
+          #ifdef VK_USE_PLATFORM_WIN32_KHR
 
           GdiplusStartupInput gdiplusStartupInput;
           ULONG_PTR gdiplusToken;
@@ -125,7 +135,7 @@ class TextEngine
           DrawTextW(hdc, sw, -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
       
           // Save the bitmap to a file
-          std::vector<BYTE> dataR = HBitmapToArray(hBitmap, width, height);
+          std::vector<uint8_t> dataR = HBitmapToArray(hBitmap, width, height);
       
           // Cleanup
           DeleteObject(hBitmap);
@@ -133,8 +143,70 @@ class TextEngine
           DeleteDC(hdc);
           GdiplusShutdown(gdiplusToken);
         
-        return dataR;        
+          return dataR;
+
+          #endif
+
+          FT_Library library;
+          FT_Init_FreeType(&library);
+
+          FT_Face face;
+          FT_New_Face(library, "arial.ttf", 0, &face);
+
+          FT_Set_Pixel_Sizes(face, 0, fontSize);
+
+          std::vector<unsigned char> myBitmap(4 * width * height);
+
+          for(int i = 0; i < width * height; i++)
+          {
+            myBitmap[4 * i + 0] = 255;
+            myBitmap[4 * i + 1] = 255;
+            myBitmap[4 * i + 2] = 255;
+            myBitmap[4 * i + 3] = 255;
+          } 
+          
+          int x = 0;
+          int y = height;
+
+          std::string text = s;
+          for (char c : text) {
+              if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
+                  // Handle error
+                  continue;
+              }
+              FT_Bitmap glyphBitmap = face->glyph->bitmap;
+              for (int row = 0; row < glyphBitmap.rows; ++row) {
+                  for (int col = 0; col < glyphBitmap.width; ++col) {
+                      // Calculate position in the target bitmap and copy the pixel
+                      int targetX = x + col;
+                      int targetY = y - row - 1;
+                      if(targetX < width && targetY < height){
+
+                        if(glyphBitmap.buffer[(glyphBitmap.rows - row - 1) * glyphBitmap.width + col] > 0)
+                        {
+                          myBitmap[4*(targetY * width + targetX) + 0] = glyphBitmap.buffer[(glyphBitmap.rows - row - 1) * glyphBitmap.width + col];
+                          myBitmap[4*(targetY * width + targetX) + 1] = 0;
+                          myBitmap[4*(targetY * width + targetX) + 2] = 0;
+                          myBitmap[4*(targetY * width + targetX) + 3] = 255;
+                        }
+                        else
+                        {
+                          myBitmap[4*(targetY * width + targetX) + 0] = 255;
+                          myBitmap[4*(targetY * width + targetX) + 1] = 255;
+                          myBitmap[4*(targetY * width + targetX) + 2] = 255;
+                          myBitmap[4*(targetY * width + targetX) + 3] = 255;
+                        }
+                        
+                      }
+                  }
+              }
+              x += face->glyph->advance.x >> 6;
+          }
+
+          return myBitmap;     
     }
+
+    #ifdef VK_USE_PLATFORM_WIN32_KHR
 
     std::vector<BYTE> HBitmapToArray(HBITMAP hBitmap, int width, int height) {
         
@@ -188,6 +260,8 @@ class TextEngine
       fclose(file);
       printf("BMP header written to output.bmp\n");
     }
+
+    #endif
     
     bool Initialize(std::string text, int fontSize, int fontColor, int backGColor, float pos_x0, float pos_x1, float pos_y0, float pos_y1, int width, int height, VkDevice LogicalDevice, VkPhysicalDevice PhysicalDevice, QueueParameters& GraphicsQueue, 
                     VkCommandBuffer& CommandBuffer, SwapchainParameters& Swapchain)

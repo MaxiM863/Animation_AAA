@@ -131,7 +131,7 @@ namespace VulkanCookbook {
     OnServerEvent();
   }
 
-  void VulkanCookbookSampleBase::KeyboardIn(WPARAM key)
+  void VulkanCookbookSampleBase::KeyboardIn(uint key)
   {
     if(key == 17)
     {
@@ -166,7 +166,7 @@ namespace VulkanCookbook {
     OnKeyEvent();
   }
 
-  void VulkanCookbookSampleBase::KeyboardOut(WPARAM key)
+  void VulkanCookbookSampleBase::KeyboardOut(uint key)
   {
     if(key == 80)
     {

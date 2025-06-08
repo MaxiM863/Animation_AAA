@@ -9,7 +9,7 @@ class Graphics : public VulkanCookbook::VulkanCookbookSample
   TextEngine* textEngine;
 
 
-  virtual bool Initialize( WindowParameters window_parameters, HWND hWnd ) override 
+  virtual bool Initialize( WindowParameters window_parameters ) override 
   { 
     
     if( !InitializeVulkan( window_parameters, nullptr, VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT, false ) ) {
