@@ -50,10 +50,17 @@ if(UNIX)
 
     add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
     
+    find_package(X11)
+
+    message(STATUS "X11_FOUND = ${X11_FOUND}")
+    message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
+    message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
+    
     if(X11_FOUND)
-    else(X11_FOUND)  
         add_definitions(-DNOT_GIT)     
         message(STATUS "GIT")
+    else(X11_FOUND)  
+        
     endif(X11_FOUND)
 
 endif(UNIX)
