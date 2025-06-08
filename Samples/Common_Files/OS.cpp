@@ -219,8 +219,7 @@ namespace VulkanCookbook {
 
     Sample.Deinitialize();
   }
-  
-#elif NOT_GIT
+#endif
 
 #ifndef NOT_GIT
 
@@ -412,8 +411,6 @@ void WindowFramework::Render() {
     
     
 }
-
-#endif
 
 #endif
 

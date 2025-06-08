@@ -73,7 +73,7 @@ if(UNIX)
     message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
 
-    if(${X11_FOUND})
+    if(X11_FOUND)
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
     else()       
         add_definitions(-DNOT_GIT)
