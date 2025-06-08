@@ -172,7 +172,7 @@ class TextEngine
           int x = 0;
           int y = height;
 
-          std::string text = s;
+          std::string text = "aalo";
           for (char c : text) {
               if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
                   // Handle error

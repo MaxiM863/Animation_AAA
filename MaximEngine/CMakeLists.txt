@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.31)
 
 project(EngineMaxim)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(TextEngine)
@@ -65,16 +65,18 @@ if(UNIX)
         GIT_TAG 	320b72a
     )
 
-    FetchContent_MakeAvailable(freetype)    
+    FetchContent_MakeAvailable(freetype)   
     
+    find_package(X11)
+
     message(STATUS "X11_FOUND = ${X11_FOUND}")
     message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
 
     if(${X11_FOUND})
-    
-        add_definitions(-NOT_GIT)
-     
+        add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+    else()        
+        add_definitions(-DNOT_GIT)
     endif(${X11_FOUND})
 
     include_directories(${X11_INCLUDE_DIR})
