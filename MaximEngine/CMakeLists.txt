@@ -65,13 +65,17 @@ if(UNIX)
         GIT_TAG 	320b72a
     )
 
-    FetchContent_MakeAvailable(freetype)
-
-    add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+    FetchContent_MakeAvailable(freetype)    
     
     message(STATUS "X11_FOUND = ${X11_FOUND}")
     message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
+
+    if(${X11_FOUND})
+    
+        add_definitions(-NOT_GIT)
+     
+    endif(${X11_FOUND})
 
     include_directories(${X11_INCLUDE_DIR})
 

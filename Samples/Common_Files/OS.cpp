@@ -220,7 +220,7 @@ namespace VulkanCookbook {
     Sample.Deinitialize();
   }
   
-#else
+#elif NOT_GIT
 
 void demo_run_xlib(VulkanCookbook::VulkanCookbookSampleBase& sample, WindowParameters wp, bool& test);
 
