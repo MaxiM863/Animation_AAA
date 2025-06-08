@@ -36,11 +36,13 @@
 #include <Windows.h>
 #elif defined __linux
 #endif
+
 #ifndef NOT_GIT
 #include <dlfcn.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #endif
+
 #ifdef __linux
 #define VK_KHR_XLIB_SURFACE_EXTENSION_NAME "VK_KHR_xlib_surface"
 #include <unistd.h>

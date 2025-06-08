@@ -78,6 +78,7 @@ if(UNIX)
         message(STATUS "NOT_GIT")
     else(X11_FOUND)       
         add_definitions(-DNOT_GIT)
+        target_compile_definitions(EngineMaxim PUBLIC NOT_GIT=1)
         message(STATUS "GIT")
     endif(X!!_FOUND)
 
