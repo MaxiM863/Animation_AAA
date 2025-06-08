@@ -77,8 +77,9 @@ if(UNIX)
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
         
         message(STATUS "NOT_GIT")
-    else(X11_FOUND)       
-        add_compile_definitions(ENABLE_FEATURE NOT_GIT="NO")
+    else(X11_FOUND)  
+        add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)     
+        add_compile_definitions(NOT_GIT)
         message(STATUS "GIT")
     endif(X11_FOUND)
 
