@@ -37,7 +37,7 @@
 #elif defined __linux
 #endif
 
-#ifndef NOT_GIT
+#ifdef NOT_GIT
 #include <dlfcn.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

@@ -49,6 +49,12 @@ endif(WIN32)
 if(UNIX)
 
     add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+    
+    if(X11_FOUND)
+    else(X11_FOUND)  
+        add_definitions(-DNOT_GIT)     
+        message(STATUS "GIT")
+    endif(X11_FOUND)
 
 endif(UNIX)
 
