@@ -75,8 +75,10 @@ if(UNIX)
 
     if(X11_FOUND)
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+        message(STATUS "NOT_GIT")
     else()       
         add_definitions(-DNOT_GIT)
+        message(STATUS "GIT")
     endif()
 
     include_directories(${X11_INCLUDE_DIR})
