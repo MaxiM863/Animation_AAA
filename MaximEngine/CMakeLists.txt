@@ -69,8 +69,6 @@ if(UNIX)
 
     add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
     
-    find_package(X11 REQUIRED)
-
     message(STATUS "X11_FOUND = ${X11_FOUND}")
     message(STATUS "X11_INCLUDE_DIR = ${X11_INCLUDE_DIR}" )
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
