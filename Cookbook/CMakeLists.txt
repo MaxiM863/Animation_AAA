@@ -56,15 +56,16 @@ if(UNIX)
     
     if(X11_FOUND)
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+        target_compile_definitions(Cookbook PUBLIC NOT_GIT=1) 
         message(STATUS "GIT")
     else()  
-        target_compile_definitions(Cookbook PUBLIC NOT_GIT=1) 
+        
         message(STATUS "GIT Library")
     endif()
 
 endif(UNIX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set_target_properties(Cookbook PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(Cookbook PUBLIC "../Library/Source_Files" "../Library/Common_Files" "../External")
