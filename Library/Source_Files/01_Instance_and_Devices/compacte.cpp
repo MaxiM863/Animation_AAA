@@ -34,7 +34,6 @@ namespace VulkanCookbook {
 #if defined _WIN32
     vulkan_library = LoadLibrary( "vulkan-1.dll" );
 #else
-#define __linux
 #ifdef NOT_GIT
     vulkan_library = dlopen( "libvulkan.so.1", RTLD_NOW );
 #endif
