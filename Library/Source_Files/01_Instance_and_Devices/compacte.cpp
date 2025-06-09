@@ -35,7 +35,6 @@ namespace VulkanCookbook {
     LPCSTR lib = "vulkan-1.dll";
     vulkan_library = LoadLibrary( lib );
 #else
-#define __linux
 #ifdef NOT_GIT
     vulkan_library = dlopen( "libvulkan.so.1", RTLD_NOW );
 #endif

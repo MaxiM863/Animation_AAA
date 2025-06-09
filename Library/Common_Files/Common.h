@@ -70,6 +70,9 @@ namespace VulkanCookbook {
 #define LIBRARY_TYPE HMODULE
 #elif defined __linux
 #define LIBRARY_TYPE void*
+#ifdef NOT_GIT
+#undef __linux
+#endif
 #endif
 
   // OS-specific parameters
