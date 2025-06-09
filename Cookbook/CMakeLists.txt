@@ -46,9 +46,7 @@ if(WIN32)
 
 endif(WIN32)
 
-if(UNIX)
-
-    add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
+if(UNIX)   
     
     find_package(X11)
 
@@ -57,10 +55,10 @@ if(UNIX)
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
     
     if(X11_FOUND)
-             
+        add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
         message(STATUS "GIT")
     else()  
-        target_compile_definitions(Cookbook PUBLIC NOT_GIT) 
+        target_compile_definitions(Cookbook PUBLIC NOT_GIT=1) 
         message(STATUS "GIT Library")
     endif()
 
