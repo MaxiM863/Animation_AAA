@@ -221,7 +221,7 @@ namespace VulkanCookbook {
   }
 #endif
 
-#ifndef NOT_GIT
+#ifdef NOT_GIT
 
 void demo_run_xlib(VulkanCookbook::VulkanCookbookSampleBase& sample, WindowParameters wp, bool& test);
 
@@ -380,6 +380,7 @@ void demo_run_xlib(VulkanCookbook::VulkanCookbookSampleBase& sample, WindowParam
 
 #else
 
+#ifndef VK_USE_PLATFORM_WIN32_KHR
 WindowFramework::WindowFramework( const char               * window_title,
                                     int                        x,
                                     int                        y,
@@ -410,6 +411,7 @@ void WindowFramework::Render() {
     
 }
 
+#endif
 #endif
 
 } // namespace VulkanCookbook

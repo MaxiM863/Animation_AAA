@@ -76,7 +76,7 @@ namespace VulkanCookbook {
     HWND               HWnd;
 #endif
 
-#ifndef NOT_GIT
+#ifdef NOT_GIT
 
     Display          * Dpy;
     Window             WIndow;

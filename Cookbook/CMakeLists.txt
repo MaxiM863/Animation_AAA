@@ -57,11 +57,12 @@ if(UNIX)
     message(STATUS "X11_LIBRARIES = ${X11_LIBRARIES}")
     
     if(X11_FOUND)
-        add_definitions(-DNOT_GIT)     
+             
         message(STATUS "GIT")
-    else(X11_FOUND)  
-        
-    endif(X11_FOUND)
+    else()  
+        add_definitions(-DNOT_GIT)
+        message(STATUS "GIT Library")
+    endif()
 
 endif(UNIX)
 
