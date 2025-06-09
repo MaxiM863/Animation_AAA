@@ -19,10 +19,10 @@
 #ifndef _WIN32
 #include <freetype/freetype.h>
 #endif
-#include <gdiplusinit.h>
+
 
 #ifdef _WIN32
-
+#include <gdiplusinit.h>
 using namespace Gdiplus;
 //using namespace VulkanCookbook;
 

@@ -37,7 +37,7 @@
 
 #else
 #ifdef NOT_GIT 
-#define __linux
+
 #endif
 #endif
 

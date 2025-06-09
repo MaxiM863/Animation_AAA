@@ -83,10 +83,8 @@ namespace VulkanCookbook {
   bool LoadFunctionExportedFromVulkanLoaderLibrary( LIBRARY_TYPE const & vulkan_library ) {
 #if defined _WIN32
   #define LoadFunction GetProcAddress
-#elif defined __linux
-#ifdef NOT_GIT
+#else
   #define LoadFunction dlsym
-#endif
 #endif
 
 #define EXPORTED_VULKAN_FUNCTION( name )                              \
