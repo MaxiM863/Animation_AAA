@@ -34,7 +34,11 @@
 
 #ifdef _WIN32
 #include <Windows.h>
-#elif defined __linux
+
+#elif
+#ifdef NOT_GIT 
+#define __linux
+#endif
 #endif
 
 #ifdef NOT_GIT
