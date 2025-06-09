@@ -76,7 +76,8 @@ if(UNIX)
     if(X11_FOUND)
         add_definitions(-DVK_USE_PLATFORM_XLIB_KHR)
         message(STATUS "NOT_GIT")
-    else(X11_FOUND)         
+    else(X11_FOUND)
+                
         message(STATUS "GIT")
     endif(X11_FOUND)
 

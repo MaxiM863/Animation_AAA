@@ -60,7 +60,7 @@ if(UNIX)
              
         message(STATUS "GIT")
     else()  
-        add_definitions(-DNOT_GIT)
+        target_compile_definitions(Cookbook PUBLIC NOT_GIT) 
         message(STATUS "GIT Library")
     endif()
 
