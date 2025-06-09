@@ -35,7 +35,7 @@
 #ifdef _WIN32
 #include <Windows.h>
 
-#elif
+#else
 #ifdef NOT_GIT 
 #define __linux
 #endif
