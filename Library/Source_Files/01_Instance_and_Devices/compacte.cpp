@@ -84,7 +84,9 @@ namespace VulkanCookbook {
 #if defined _WIN32
   #define LoadFunction GetProcAddress
 #elif defined __linux
+#ifdef NOT_GIT
   #define LoadFunction dlsym
+#endif
 #endif
 
 #define EXPORTED_VULKAN_FUNCTION( name )                              \
