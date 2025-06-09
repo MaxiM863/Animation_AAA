@@ -32,7 +32,8 @@ namespace VulkanCookbook {
 
   bool ConnectWithVulkanLoaderLibrary( LIBRARY_TYPE & vulkan_library ) {
 #if defined _WIN32
-    vulkan_library = LoadLibrary( "vulkan-1.dll" );
+    LPCSTR lib = "vulkan-1.dll";
+    vulkan_library = LoadLibrary( lib );
 #else
 #define __linux
 #ifdef NOT_GIT

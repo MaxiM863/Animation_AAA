@@ -19,8 +19,9 @@
 #ifndef _WIN32
 #include <freetype/freetype.h>
 #endif
+#include <gdiplusinit.h>
 
-#ifdef VK_USE_PLATFORM_WIN32_KHR
+#ifdef _WIN32
 
 using namespace Gdiplus;
 //using namespace VulkanCookbook;
@@ -212,7 +213,7 @@ class TextEngine
           #endif
     }
 
-    #ifdef VK_USE_PLATFORM_WIN32_KHR
+    #ifdef _WIN32
 
     std::vector<BYTE> HBitmapToArray(HBITMAP hBitmap, int width, int height) {
         

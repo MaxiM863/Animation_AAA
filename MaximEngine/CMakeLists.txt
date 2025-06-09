@@ -94,4 +94,4 @@ if(UNIX)
 
 endif(UNIX)
 
-target_include_directories(EngineMaxim PRIVATE "../Samples/Common_Files" "../Library/Common_Files" "../Library/Source_Files" "../External" "../build/_deps/glm-src/" ${FREETYPE_INCLUDE_DIRS})
+target_include_directories(EngineMaxim PRIVATE "../Samples/Common_Files" "../Library/Common_Files" "../Library/Source_Files" "../External" "../build/_deps/glm-src/" ${FREETYPE_INCLUDE_DIRS} "./StateMachine" "./TextEngine")

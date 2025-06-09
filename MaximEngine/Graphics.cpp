@@ -8,6 +8,8 @@ class Graphics : public VulkanCookbook::VulkanCookbookSample
 
   TextEngine* textEngine;
 
+  StateMachineAnimation* state_0;
+
 
   virtual bool Initialize( WindowParameters window_parameters ) override 
   { 
@@ -26,6 +28,14 @@ class Graphics : public VulkanCookbook::VulkanCookbookSample
 
     textEngine->Initialize("test allo !", 36, 0xFFFF00FF, 0x0000FF00, pos_x0, pos_x1, pos_y0, pos_y1, 200, 40, LogicalDevice.Object.Handle, PhysicalDevice, GraphicsQueue, FramesResources.front().CommandBuffer[0], Swapchain);
 
+
+    //*********************************
+
+    state_0 = new StateMachineAnimation();
+
+    state_0->Initialize("Etat-0", 1280, 0, 0, -0.25f, 0.25f, -0.3f, 0.2f, 1000, 1000, *LogicalDevice, PhysicalDevice, GraphicsQueue, FramesResources.front().CommandBuffer[0], Swapchain);
+
+    //*********************************
     return true;
   }
 
@@ -75,6 +85,8 @@ virtual bool Draw() override {
     BeginRenderPass( command_buffer[0], textEngine->getRenderPass(), framebuffer, { { 0, 0 }, Swapchain.Size }, { { 1.0f, 0.0f, 0.0f, 1.0f }, { 1.0f, 0 } }, VK_SUBPASS_CONTENTS_INLINE );
 
     textEngine->draw_2( command_buffer[0] );
+
+    state_0->draw_2(command_buffer[0]);
     
     EndRenderPass( command_buffer[0] );
 
